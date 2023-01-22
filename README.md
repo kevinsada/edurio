@@ -10,6 +10,7 @@ _"php": "^8.0.2"_ (Php 8.0 or higher)
 * copy .env.example into .env and set your credentials
 * php artisan migrate
 * php artisan db:seed
+* php artisan test (To Run Unit Testing)
 
 ### API DOCUMENTATION
 
