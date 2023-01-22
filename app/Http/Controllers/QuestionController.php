@@ -24,10 +24,10 @@ class QuestionController extends Controller
             $validated = $request->validated();
             $validated['question_id'] = $questionId;
             Answer::create($validated);
-            return response()->json('Answer created successfully!');
+            return response()->json(['message' => 'Answer created successfully!']);
         } catch (\Exception $exception) {
             \Log::error($exception->getMessage());
-            return response()->json('Error! Please refresh the page and try again.');
+            return response()->json(['message' => 'Error! Please refresh the page and try again.']);
         }
     }
 
@@ -95,7 +95,7 @@ class QuestionController extends Controller
         return response()->json(['data' => $results]);
     }
 
-    public function wordCloud()
+    public function wordCloud(): array
     {
         //GROUP_CONCAT serves to merge all rows into one in this case, answer.
         $mergedAnswer = Answer::whereNotNull('answer')->selectRaw('GROUP_CONCAT(answer) as answer')->first()->answer;
@@ -117,6 +117,4 @@ class QuestionController extends Controller
         //return top 3
         return array_slice($wordCount, 0, 3, true);
     }
-
-
 }
