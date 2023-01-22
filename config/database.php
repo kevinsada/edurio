@@ -59,6 +59,8 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
+                //set GROUP_CONCAT to max
+                PDO::MYSQL_ATTR_INIT_COMMAND => 'SET SESSION group_concat_max_len = @@max_allowed_packet',
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
